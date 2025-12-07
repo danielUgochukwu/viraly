@@ -42,6 +42,13 @@ export const useSignOutAccount = () => {
   });
 };
 
+export const useGetCurrentUser = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+    queryFn: getCurrentUser,
+  });
+};
+
 // Posts Queries
 export const useCreatePost = () => {
   const queryClient = useQueryClient();
@@ -136,13 +143,6 @@ export const useDeleteSavedPost = () => {
   });
 };
 
-export const useGetCurrentUser = () => {
-  return useQuery({
-    queryKey: [QUERY_KEYS.GET_CURRENT_USER],
-    queryFn: getCurrentUser,
-  });
-};
-
 export const useGetPostById = (postId: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_POST_BY_ID, postId],
@@ -183,11 +183,11 @@ export const useGetPosts = () => {
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
     queryFn: getInfinitePosts,
     getNextPageParam: (lastPage) => {
-      if (lastPage && lastPage.documents.length === 0) return null;
+      if (!lastPage || lastPage.documents.length === 0) return null;
 
-      const lastid = lastPage.documents[lastPage?.documents.length - 1].$id;
+      const lastIndex = lastPage.documents.length - 1;
 
-      return lastid;
+      return lastIndex;
     },
   });
 };

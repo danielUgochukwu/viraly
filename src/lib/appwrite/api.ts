@@ -412,7 +412,6 @@ export async function searchPosts(searchTerm: string) {
   }
 }
 
-/*
 // Example: Debugging the full user creation, sign-in, and retrieval process
 export async function debugUserFlow(user: INewUser) {
   try {
@@ -442,4 +441,3 @@ export async function debugUserFlow(user: INewUser) {
     console.error("Error during the full user flow:", error);
   }
 }
-*/
