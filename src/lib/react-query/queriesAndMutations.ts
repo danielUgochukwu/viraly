@@ -189,6 +189,7 @@ export const useGetPosts = () => {
 
       return lastIndex;
     },
+    initialPageParam: 0,
   });
 };
 
